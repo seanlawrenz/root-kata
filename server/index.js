@@ -10,6 +10,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(logger('dev'));
 
+// DB config
+const options = { keepAlive: 300000, connectTimeoutMS: 30000, useNewUrlParser: true };
+// Hard coding the db so we can share databases
+const uri = 'mongodb://seanlaw:password1@ds145895.mlab.com:45895/kata-root';
+mongoose.connect(uri, options);
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error'));
+
 const API_PORT = 3001;
 
 // error handler
