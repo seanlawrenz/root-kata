@@ -1,5 +1,4 @@
 import Trip from '../models/trip';
-import Driver from '../models/driver';
 
 export const newTrip = (req, res) => {
   const trip = new Trip();
