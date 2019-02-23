@@ -4,7 +4,7 @@ const TripSchema = new Schema({
   startTime: Date,
   endTime: Date,
   miles: Number,
-  user: {
+  driver: {
     type: Schema.Types.ObjectId,
     ref: 'Driver',
   },

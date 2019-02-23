@@ -4,6 +4,9 @@ import methodOverride from 'method-override';
 import logger from 'morgan';
 import mongoose from 'mongoose';
 
+import { newDriver, getDriver } from './controller/driver';
+import { newTrip } from './controller/trip';
+
 const app = express();
 app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,7 +23,27 @@ db.on('error', console.error.bind(console, 'MongoDB connection error'));
 
 const API_PORT = 3001;
 
-// error handler
+const router = express.Router();
+
+//Routes
+
+// Driver
+router.get('/driver/:id', (req, res) => {
+  getDriver(req, res);
+});
+
+router.post('/driver/post', (req, res) => {
+  newDriver(req, res);
+});
+
+// Trips
+router.post('/trip/new', (req, res) => {
+  newTrip(req, res);
+});
+
+app.use('/api', router);
+
+// error handler From express cli
 app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
