@@ -1,13 +1,15 @@
 import fetch from 'cross-fetch';
+export const ApiUrl = `http:localhost:3000/api`;
 
 export const APIRequest = async (url, requestMethod, body) => {
-  const apiUrl = `api${url}`;
+  const apiUrl = `http://localhost:3000/api${url}`;
   let data;
   try {
     const method = requestMethod === undefined ? 'GET' : requestMethod;
-
+    console.log(body);
     if (body !== undefined) {
       body = await JSON.stringify(body);
+      console.log(body);
     }
 
     const response = await fetch(apiUrl, {
@@ -19,13 +21,13 @@ export const APIRequest = async (url, requestMethod, body) => {
       body,
     });
 
-    if (!response.ok)  {
+    if (!response.ok) {
       throw Error(response.statusText);
     }
 
     data = await response.json();
-  } catch(error) {
+  } catch (error) {
     console.error(error);
   }
   return data;
-}
+};
