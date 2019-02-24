@@ -32,7 +32,7 @@ router.get('/driver/:id', (req, res) => {
   getDriver(req, res);
 });
 
-router.post('/driver/post', (req, res) => {
+router.post('/driver/new', (req, res) => {
   newDriver(req, res);
 });
 
