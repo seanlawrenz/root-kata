@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import moment from 'moment';
 import { APIRequest } from '../../utils';
+import { Redirect } from 'react-router-dom';
 
 import './styles.css';
 
@@ -16,6 +17,7 @@ class AddTrip extends Component {
         isError: false,
         message: '',
       },
+      addedSuccessfully: false,
     };
 
     this.onChange = this.onChange.bind(this);
@@ -73,7 +75,12 @@ class AddTrip extends Component {
       .minute(parseInt(endArray[1], 10));
 
     const data = await APIRequest('/trip/new', 'POST', { driver: driverId, startTime: start, endTime: end, miles });
-    console.log(data);
+    if (data.success) {
+      this.setState({
+        ...this.state,
+        addedSuccessfully: true,
+      });
+    }
   }
 
   render() {
@@ -83,11 +90,13 @@ class AddTrip extends Component {
       endTime,
       miles,
       error: { isError, message },
+      addedSuccessfully,
     } = this.state;
     return (
       <Fragment>
         <h1>Add Trip</h1>
         {isError && <p>{message}</p>}
+        {addedSuccessfully && <Redirect to="/" />}
         <form>
           <div className="form-container">
             <label htmlFor="driver-name">Driver Name</label>

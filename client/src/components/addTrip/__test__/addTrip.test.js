@@ -24,7 +24,7 @@ describe('AddTrip', () => {
   });
 
   it('should fetch the diver id from the name on submit', async () => {
-    mockAPI.mockImplementationOnce(jest.fn(() => Promise.resolve({ success: true, id: mockDriver.id })));
+    mockAPI.mockImplementation(jest.fn(() => Promise.resolve({ success: true, id: mockDriver.id })));
     const { container, getByLabelText, getByText } = renderWithRouter(<AddTrip />);
 
     fireEvent.change(getByLabelText(/driver name/i, { id: 'driver-name' }), {

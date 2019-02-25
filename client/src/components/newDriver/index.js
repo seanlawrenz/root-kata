@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Redirect } from 'react-router-dom';
 import { APIRequest } from '../../utils';
 
 class NewDriver extends Component {
@@ -6,6 +7,7 @@ class NewDriver extends Component {
     super(props);
     this.state = {
       driverName: '',
+      addedSuccessfully: false,
     };
 
     this.onChange = this.onChange.bind(this);
@@ -25,14 +27,20 @@ class NewDriver extends Component {
     e.preventDefault();
     const { driverName } = this.state;
     const data = await APIRequest(`/driver/new`, 'POST', { name: driverName });
-    console.log(data);
+    if (data.successful) {
+      this.setState({
+        ...this.state,
+        addedSuccessfully: true,
+      });
+    }
   }
 
   render() {
-    const { driverName } = this.state;
+    const { driverName, addedSuccessfully } = this.state;
 
     return (
       <Fragment>
+        {addedSuccessfully && <Redirect to="/" />}
         <h1>Add New Driver</h1>
         <form>
           <label htmlFor="driver-name" className="form-label">
