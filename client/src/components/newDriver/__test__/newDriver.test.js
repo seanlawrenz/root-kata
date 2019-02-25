@@ -14,11 +14,15 @@ describe('NewDriver', () => {
     getByLabelText(/driver name/i);
   });
 
-  it('should add driver on submit', () => {
-    const { getByText, getByLabelText } = render(<NewDriver />);
+  it('should add driver on submit', async () => {
+    const { container, getByText, getByLabelText } = render(<NewDriver />);
     fireEvent.change(getByLabelText(/driver name/i, { id: 'driver-name' }), {
       target: { value: mockDriver.name },
     });
     fireEvent.click(getByText(/submit/i));
+    expect(mockAPI).toHaveBeenCalledWith(`/driver/new`, 'POST', { name: mockDriver.name });
+    await wait(() => {
+      expect(container).toBeTruthy();
+    });
   });
 });
