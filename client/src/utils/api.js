@@ -6,10 +6,9 @@ export const APIRequest = async (url, requestMethod, body) => {
   let data;
   try {
     const method = requestMethod === undefined ? 'GET' : requestMethod;
-    console.log(body);
+
     if (body !== undefined) {
       body = await JSON.stringify(body);
-      console.log(body);
     }
 
     const response = await fetch(apiUrl, {

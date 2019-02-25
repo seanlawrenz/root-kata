@@ -4,6 +4,7 @@ import './App.css';
 
 import Home from './components/home';
 import NewDriver from './components/newDriver';
+import AddTrip from './components/addTrip';
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
         <div className="App">
           <Route exact path="/" component={Home} />
           <Route exact path="/driver/new" component={NewDriver} />
+          <Route exact path="/trip/new" component={AddTrip} />
         </div>
       </Router>
     );

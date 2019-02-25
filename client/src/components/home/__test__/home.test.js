@@ -11,4 +11,5 @@ test('Home component', () => {
   const { getByText } = renderWithRouter(<Home />);
   getByText(/You are on the home page/i);
   getByText(/add new driver/i);
+  getByText(/add trip/i);
 });
