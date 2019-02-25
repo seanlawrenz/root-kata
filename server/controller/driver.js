@@ -36,3 +36,16 @@ export const getDriver = async (req, res) => {
     return res.json({ success: false, error });
   }
 };
+
+export const getDriveByName = async (req, res) => {
+  const { name } = req.body;
+  try {
+    const driver = await Driver.findOne({ name });
+    return res.json({
+      success: true,
+      id: driver._id,
+    });
+  } catch (error) {
+    return res.json({ success: false, error });
+  }
+};
