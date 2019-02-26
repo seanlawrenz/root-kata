@@ -49,3 +49,17 @@ export const getDriveByName = async (req, res) => {
     return res.json({ success: false, error });
   }
 };
+
+// Mongoose populate is not working for whatever reason.
+// This is the correct usage of this and the keys are showing in the db.
+// Ref https://github.com/Automattic/mongoose/issues/7562
+export const getDrivers = async (req, res) => {
+  try {
+    const drivers = await Driver.find()
+      .populate('trips')
+      .exec();
+    return res.json({ success: true, drivers });
+  } catch (error) {
+    return res.json({ success: false, error });
+  }
+};

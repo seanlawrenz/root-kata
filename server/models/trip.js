@@ -11,3 +11,14 @@ const TripSchema = new Schema({
 });
 
 export default mongoose.model('Trip', TripSchema);
+
+export const getDrivers = async (req, res) => {
+  try {
+    const drivers = await Driver.find()
+      .populate('trips')
+      .exec();
+    return res.json({ success: true, drivers });
+  } catch (error) {
+    return res.json({ success: false, error });
+  }
+};

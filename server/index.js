@@ -4,7 +4,7 @@ import methodOverride from 'method-override';
 import logger from 'morgan';
 import mongoose from 'mongoose';
 
-import { newDriver, getDriver, getDriveByName } from './controller/driver';
+import { newDriver, getDriver, getDriveByName, getDrivers } from './controller/driver';
 import { newTrip } from './controller/trip';
 
 const app = express();
@@ -30,6 +30,10 @@ const router = express.Router();
 // Driver
 router.get('/driver/:id', (req, res) => {
   getDriver(req, res);
+});
+
+router.get('/driver', (req, res) => {
+  getDrivers(req, res);
 });
 
 router.post('/driver/new', (req, res) => {

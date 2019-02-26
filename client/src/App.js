@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
 import Home from './components/home';
@@ -13,9 +13,11 @@ class App extends Component {
       <Router>
         <div className="App">
           <Route exact path="/" component={Home} />
-          <Route exact path="/driver/new" component={NewDriver} />
+          <Switch>
+            <Route exact path="/driver/new" component={NewDriver} />
+            <Route path="/driver/:id" component={DriverResults} />
+          </Switch>
           <Route exact path="/trip/new" component={AddTrip} />
-          <Route exact path="/driver/:id" component={DriverResults} />
         </div>
       </Router>
     );
