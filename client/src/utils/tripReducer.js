@@ -20,7 +20,7 @@ export const tripReducer = tripInfo => {
   let totalTime = 0;
   let totalMiles = 0;
 
-  tripInfo.map(trip => {
+  tripInfo.forEach(trip => {
     const { startTime, endTime, miles } = trip;
     totalTime = totalTime + Math.abs(new Date(endTime) - new Date(startTime));
     totalMiles = totalMiles + miles;
