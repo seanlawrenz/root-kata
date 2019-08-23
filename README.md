@@ -1,6 +1,8 @@
-# Root insurance kata
+# MERN driving app
 
-This is a kata for Root insurance. The instructions for this was to have a driving history for people. I went a little rogue on this and build a UI (since I am going for a front-end role). This is a MERN app with data base hosted on mLab so it will start with data.
+Just a quick MERN web app.
+
+This app has a data base hosted on mLab so it will start with data.
 
 ## Installing
 
